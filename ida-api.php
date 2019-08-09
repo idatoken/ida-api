@@ -22,7 +22,6 @@ class ida{
         self::$query = http_build_query($query);
         self::$headers = array();
         self::$headers[] = 'Accept: application/json';
-        self::$headers[] = 'Content-Type: application/json';
 		
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL,'https://idatoken.org/api.v1.php');
