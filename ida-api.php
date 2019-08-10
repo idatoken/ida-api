@@ -2,22 +2,25 @@
 /*=========================
 = API class for IDA TOKEN =
 == https://idatoken.org/ ==
-========== v.0.1 ==========
+========== v.1.1 ==========
 =========================*/
 
 class ida{
     protected static $token;
+    protected static $delay;
     protected static $headers;
     protected static $query;
     protected static $responses;
 	
-    public function __construct($token)
+    public function __construct($token, $delay=10)
     {
-       self::$token = $token;               
+       self::$token = $token;
+       self::$delay = $delay;
     }
 	
     public static function call($query) {
         $query['token'] = self::$token;
+	$query['delay'] = self::$delay;
         if(empty($query) || empty($query['action'])) return array('result'=>false,'code'=>99,'message'=>'Please read the documentation.');
         self::$query = http_build_query($query);
         self::$headers = array();
